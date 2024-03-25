@@ -1,11 +1,12 @@
 ---
 - name: Copy files to remote server
-  copy:
+  synchronize:
     src: ./../files
     dest: /srv/app
-    remote_src: yes
+    recursive: yes
+  become: yes
 
 - name: Run docker-compose up -d
   command: docker-compose up -d
   args:
-    chdir: /srv/app
+    chdir: /srv/app/files

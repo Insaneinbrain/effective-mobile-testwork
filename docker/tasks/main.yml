@@ -21,8 +21,10 @@
 
 - name: Add Docker repository
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ubuntu_version }} stable"
     state: present
+  vars:
+    ubuntu_version: "ubuntu jammy"
 
 - name: Install Docker CE
   apt:
@@ -30,7 +32,9 @@
     state: present
 
 - name: Install Docker Compose
-  shell: curl -sL "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+  shell: curl -sL "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/do
+  args:
+    warn: false
   vars:
     docker_compose_version: "1.29.2"
 
