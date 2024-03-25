@@ -1,0 +1,5 @@
+all:
+  hosts:
+    test_srv:
+      ansible_host: 91.215.136.10
+      ansible_ssh_port: 20422
