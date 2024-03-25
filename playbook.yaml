@@ -1,8 +1,9 @@
-- name: app deploy
+- name: deploy
   gather_facts: no
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   hosts:
     - test_srv
   roles:
-    - nginx-php-mysql
+    - docker
+    - app

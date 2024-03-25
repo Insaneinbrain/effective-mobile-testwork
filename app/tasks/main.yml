@@ -1,0 +1,11 @@
+---
+- name: Copy files to remote server
+  copy:
+    src: ./../files
+    dest: /srv/app
+    remote_src: yes
+
+- name: Run docker-compose up -d
+  command: docker-compose up -d
+  args:
+    chdir: /srv/app
